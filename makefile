@@ -6,7 +6,7 @@
 #    By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/02 17:40:51 by jmorneau          #+#    #+#              #
-#    Updated: 2022/09/02 17:42:07 by jmorneau         ###   ########.fr        #
+#    Updated: 2022/09/09 19:14:49 by jmorneau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ RM = @rm -f
 INCLUDE = -I include/
 
 SRC_DIR = src/
-SRC_FILES =	ft_atoi.c philo_init.c philo.c thread_creation.c
+SRC_FILES =	ft_atoi.c philo_init.c philo.c thread_creation.c print_action.c time.c
 
 OBJ_DIR = objs/
 OBJS = ${addprefix ${OBJ_DIR}, $(SRC_FILES:.c=.o)}

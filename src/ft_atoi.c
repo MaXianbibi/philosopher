@@ -6,11 +6,13 @@
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 15:03:42 by jmorneau          #+#    #+#             */
-/*   Updated: 2022/09/01 14:20:10 by jmorneau         ###   ########.fr       */
+/*   Updated: 2022/09/05 21:51:38 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+#include <stdio.h>
+
+int	ft_atoi(char *str)
 {
 	int	i;
 	int	signe;

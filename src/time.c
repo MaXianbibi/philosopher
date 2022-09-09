@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 14:12:20 by jmorneau          #+#    #+#             */
-/*   Updated: 2022/09/05 21:51:13 by jmorneau         ###   ########.fr       */
+/*   Created: 2022/09/09 19:18:30 by jmorneau          #+#    #+#             */
+/*   Updated: 2022/09/09 19:23:55 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
+time_t	get_time_in_ms(void)
+{
+	struct timeval	tv;
 
-int	print_error(char *str)
-{
-	printf("Error\n");
-	printf("%s", str);
-	return (0);
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
-int main(int argc, char **argv)
+
+void philo_action(t_philo *philo)
 {
-	t_global data;
+
+	time_t wake_up;
 	
-	if (argc != 5 && argc != 6)
-		return(print_error("Il faut exactement 4 ou 5 arguments\n"));
-	data_init(&data, argv);
-	if (thread_init(argv, &data) == -1)
-		printf("Error\n");
-	return (0);
+	wake_up = get_time_in_ms + ft_atoi(philo->arg[4]);
+	
+	while (get_time_in_ms() < wake_up)
+	{
+		
+		if (game->alive == 0)
+			break;
+			
+	}
+	
+
 }
