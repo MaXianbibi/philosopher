@@ -6,7 +6,7 @@
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 19:33:00 by jmorneau          #+#    #+#             */
-/*   Updated: 2022/09/09 19:04:12 by jmorneau         ###   ########.fr       */
+/*   Updated: 2022/09/13 02:07:34 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,24 @@
 # include <sys/time.h>
 # include <pthread.h>
 
+enum	e_action
+{
+	SLEEP,
+	EAT,
+	THINK,
+	FORK,
+	DIE
+};
+
+struct s_atime
+{
+	int die_t;
+	int eat_t;
+	int sleep_t;
+	int neat_t;
+};
+typedef struct s_atime t_atime;
+
 struct s_philo
 {
 		pthread_mutex_t *fork_right;
@@ -28,6 +46,7 @@ struct s_philo
 		int 			digit;
 		char			 **arg;
 		int				*alive;
+		t_atime			time;
 };
 typedef struct s_philo t_philo;
 
@@ -37,6 +56,7 @@ struct s_global
 	pthread_t		*philos_thread;
 	t_philo			*philos;
 	int				count;
+	int				alive;
 };
 typedef struct s_global t_global;
 
@@ -45,10 +65,10 @@ int thread_init(char **argv, t_global *data);
 int data_init(t_global *data, char **argv);
 
 // actions
-void take_a_fork(t_philo *philo, struct timeval time);
-void is_eating(t_philo *philo, struct timeval time);
-void is_sleeping(t_philo *philo, struct timeval time);
-void is_thinking(t_philo *philo, struct timeval time);
-int is_he_dead(t_philo *philo, struct timeval time_eat, struct timeval time);
+void action (t_philo *philo, time_t time, int digit, time_t action_time, time_t time_eat);
+
+// time gestion
+void 	philo_action_time(t_philo *philo, time_t action_time, time_t eat_time);
+time_t	get_time_in_ms(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 15:25:17 by jmorneau          #+#    #+#             */
-/*   Updated: 2022/09/09 19:11:00 by jmorneau         ###   ########.fr       */
+/*   Updated: 2022/09/13 00:09:31 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ static void fork_init(t_global *data, int i)
 int data_init(t_global *data, char **argv)
 {
 	int i;
-	int alive;
 
-	alive = 0;
 	i = 0;
+	data->alive = 1;
 	data->count = ft_atoi(argv[1]);
 	data->philos_thread = malloc(sizeof(pthread_t) * data->count);
 	data->fork = malloc(sizeof(pthread_mutex_t) * data->count);
@@ -43,7 +42,7 @@ int data_init(t_global *data, char **argv)
 		data->philos[i].digit = i;
 		fork_init(data, i);
 		data->philos[i].arg = argv;
-		data->philos[i].alive = &alive;
+		data->philos[i].alive = &data->alive;
 		i++;
 	}
 	return (0);
