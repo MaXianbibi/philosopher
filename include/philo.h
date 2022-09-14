@@ -6,7 +6,7 @@
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 19:33:00 by jmorneau          #+#    #+#             */
-/*   Updated: 2022/09/13 02:07:34 by jmorneau         ###   ########.fr       */
+/*   Updated: 2022/09/13 21:56:22 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,33 @@ struct s_atime
 };
 typedef struct s_atime t_atime;
 
+struct s_fork
+{
+	pthread_mutex_t fork;
+	int				in_use;
+};
+typedef struct s_fork t_fork;
+
 struct s_philo
 {
-		pthread_mutex_t *fork_right;
-		pthread_mutex_t *fork_left;
-		int 			digit;
-		char			 **arg;
-		int				*alive;
-		t_atime			time;
+		t_fork				*fork_right;
+		t_fork				*fork_left;
+		pthread_mutex_t		*superviseur;
+		int 				digit;
+		char				**arg;
+		int					*alive;
+		t_atime				time;
 };
 typedef struct s_philo t_philo;
 
 struct s_global
 {
-	pthread_mutex_t *fork;
-	pthread_t		*philos_thread;
-	t_philo			*philos;
-	int				count;
-	int				alive;
+	t_fork				*fork;
+	pthread_t			*philos_thread;
+	t_philo				*philos;
+	pthread_mutex_t		superviseur;
+	int					count;
+	int					alive;
 };
 typedef struct s_global t_global;
 
@@ -68,7 +77,8 @@ int data_init(t_global *data, char **argv);
 void action (t_philo *philo, time_t time, int digit, time_t action_time, time_t time_eat);
 
 // time gestion
-void 	philo_action_time(t_philo *philo, time_t action_time, time_t eat_time);
+void 	philo_action_time(t_philo *philo, time_t action_time, time_t eat_time, time_t time);
 time_t	get_time_in_ms(void);
+void checkifdead(t_philo *philo, time_t eat_time, time_t time);
 
 #endif
