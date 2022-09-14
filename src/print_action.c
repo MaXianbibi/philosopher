@@ -6,7 +6,7 @@
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 21:01:27 by jmorneau          #+#    #+#             */
-/*   Updated: 2022/09/13 22:11:07 by jmorneau         ###   ########.fr       */
+/*   Updated: 2022/09/14 00:50:27 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,17 @@
 
 void think_action(t_philo *philo, time_t time_eat, time_t time)
 {
+	time_t	i;
+	int		state;
+	
+	if (get_time_in_ms() == time)
+		state = 1;
+	else
+		state = 0;
+	i = get_time_in_ms();
 	while (1)
 	{
-		if (philo->fork_right->in_use == 0)
+		if (philo->fork_right->in_use == 0 && state)
 		{
 			pthread_mutex_lock(&philo->fork_right->fork);
 			philo->fork_right->in_use = 1;
@@ -34,8 +42,8 @@ void think_action(t_philo *philo, time_t time_eat, time_t time)
 				pthread_mutex_unlock(&philo->fork_right->fork);	
 			}
 		}
-		
-
+		if (get_time_in_ms() - i >= ((philo->time.die_t - (philo->time.eat_t + philo->time.sleep_t)) / 2))
+			state++;
 		checkifdead(philo, time_eat, time);
 	}
 }

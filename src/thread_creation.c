@@ -6,7 +6,7 @@
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 14:16:18 by jmorneau          #+#    #+#             */
-/*   Updated: 2022/09/13 21:41:32 by jmorneau         ###   ########.fr       */
+/*   Updated: 2022/09/14 01:08:55 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,12 @@ int thread_init(char **argv, t_global *data)
 			return (printf("Error\n"));
 		i++;
 	}
+	
+	while (data->alive)
+	{
+		
+	}
+	
 	i = 0;
 	while (i < data->count)
 	{
