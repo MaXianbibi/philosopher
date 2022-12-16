@@ -6,7 +6,7 @@
 #    By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/02 17:40:51 by jmorneau          #+#    #+#              #
-#    Updated: 2022/09/09 19:14:49 by jmorneau         ###   ########.fr        #
+#    Updated: 2022/10/01 19:20:26 by jmorneau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,12 +47,8 @@ all: $(NAME)
 
 $(NAME): ${OBJ_DIR} $(OBJS)
 	${CC} $(CFLAGS) ${OBJS} -o $@
-
 ${OBJ_DIR}:
 	mkdir -p $@
-
-
-
 clean:
 	@$(RM) -r ${OBJ_DIR}
 

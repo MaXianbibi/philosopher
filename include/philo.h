@@ -6,7 +6,7 @@
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 19:33:00 by jmorneau          #+#    #+#             */
-/*   Updated: 2022/09/13 21:56:22 by jmorneau         ###   ########.fr       */
+/*   Updated: 2022/12/15 19:27:34 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ struct s_philo
 		t_fork				*fork_right;
 		t_fork				*fork_left;
 		pthread_mutex_t		*superviseur;
+		time_t				last_meal;
 		int 				digit;
 		char				**arg;
 		int					*alive;
@@ -64,6 +65,7 @@ struct s_global
 	pthread_t			*philos_thread;
 	t_philo				*philos;
 	pthread_mutex_t		superviseur;
+	int					time_delay;
 	int					count;
 	int					alive;
 };
@@ -79,6 +81,7 @@ void action (t_philo *philo, time_t time, int digit, time_t action_time, time_t 
 // time gestion
 void 	philo_action_time(t_philo *philo, time_t action_time, time_t eat_time, time_t time);
 time_t	get_time_in_ms(void);
-void checkifdead(t_philo *philo, time_t eat_time, time_t time);
+int checkifdead(t_philo *philo, time_t eat_time, time_t time);
+int checkifneat(t_philo *philo);
 
 #endif
