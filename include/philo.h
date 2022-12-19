@@ -6,7 +6,7 @@
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 19:33:00 by jmorneau          #+#    #+#             */
-/*   Updated: 2022/12/19 09:14:46 by jmorneau         ###   ########.fr       */
+/*   Updated: 2022/12/19 09:49:37 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,32 +32,32 @@ enum	e_action
 
 struct s_atime
 {
-	int die_t;
-	int eat_t;
-	int sleep_t;
-	int neat_t;
+	int	die_t;
+	int	eat_t;
+	int	sleep_t;
+	int	neat_t;
 };
-typedef struct s_atime t_atime;
+typedef struct s_atime	t_atime;
 
 struct s_fork
 {
-	pthread_mutex_t fork;
+	pthread_mutex_t	fork;
 	int				in_use;
 };
-typedef struct s_fork t_fork;
+typedef struct s_fork	t_fork;
 
 struct s_philo
 {
-		t_fork				*fork_right;
-		t_fork				*fork_left;
-		pthread_mutex_t		*superviseur;
-		time_t				last_meal;
-		int 				digit;
-		char				**arg;
-		int					*alive;
-		t_atime				time;
+	t_fork				*fork_right;
+	t_fork				*fork_left;
+	pthread_mutex_t		*superviseur;
+	time_t				last_meal;
+	int					digit;
+	char				**arg;
+	int					*alive;
+	t_atime				time;
 };
-typedef struct s_philo t_philo;
+typedef struct s_philo	t_philo;
 
 struct s_global
 {
@@ -69,19 +69,20 @@ struct s_global
 	int					count;
 	int					alive;
 };
-typedef struct s_global t_global;
+typedef struct s_global	t_global;
 
-int	ft_atoi(char *str);
-int thread_init(char **argv, t_global *data);
-int data_init(t_global *data, char **argv);
+int		ft_atoi(char *str);
+int		thread_init(char **argv, t_global *data);
+int		data_init(t_global *data, char **argv);
 
 // actions
-void action (t_philo *philo, time_t time, int digit, time_t action_time);
+void	action(t_philo *philo, time_t time, int digit, time_t action_time);
 
 // time gestion
-void 	philo_action_time(t_philo *philo, time_t action_time, time_t eat_time, time_t time);
+void	philo_action_time(t_philo *philo, time_t action_time,
+			time_t eat_time, time_t time);
 time_t	get_time_in_ms(void);
-int checkifdead(t_philo *philo, time_t eat_time, time_t time);
-int checkifneat(t_philo *philo);
+int		checkifdead(t_philo *philo, time_t eat_time, time_t time);
+int		checkifneat(t_philo *philo);
 
 #endif
