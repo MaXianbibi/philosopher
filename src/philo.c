@@ -6,7 +6,7 @@
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 14:12:20 by jmorneau          #+#    #+#             */
-/*   Updated: 2022/12/12 18:35:56 by jmorneau         ###   ########.fr       */
+/*   Updated: 2022/12/19 09:22:30 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	print_error(char *str)
 	return (0);
 }
 
-static int check_nb_philo(char **argv, t_global *data)
+static int	check_nb_philo(char **argv, t_global *data)
 {
 	if (ft_atoi(argv[1]) == 1)
 	{
@@ -36,23 +36,33 @@ static int check_nb_philo(char **argv, t_global *data)
 		printf("Error : Le nombre de philosophes doit être entre 1 et 200.\n");
 		return (0);
 	}
+	data->time_delay = 0;
 	if (ft_atoi(argv[1]) == 2)
 		data->time_delay = 1;
-	else 
-		data->time_delay = 0;
 	return (1);
 }
 
-int main(int argc, char **argv)
+static void	ft_free_ft(t_global *data)
 {
-	t_global data;
-	
+	if (data->philos)
+		free (data->philos);
+	if (data->fork)
+		free (data->fork);
+	if (data->philos_thread)
+		free (data->philos_thread);
+}
+
+int	main(int argc, char **argv)
+{
+	t_global	data;
+
 	if (argc != 5 && argc != 6)
-		return(print_error("Il faut exactement 4 ou 5 arguments\n"));
+		return (print_error("Il faut exactement 4 ou 5 arguments\n"));
 	if (!check_nb_philo(argv, &data))
-		return (0);	
+		return (0);
 	data_init(&data, argv);
 	if (thread_init(argv, &data))
 		printf("Error\n");
+	ft_free_ft(&data);
 	return (0);
 }

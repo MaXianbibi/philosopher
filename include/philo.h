@@ -6,7 +6,7 @@
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 19:33:00 by jmorneau          #+#    #+#             */
-/*   Updated: 2022/12/15 19:27:34 by jmorneau         ###   ########.fr       */
+/*   Updated: 2022/12/19 09:14:46 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int thread_init(char **argv, t_global *data);
 int data_init(t_global *data, char **argv);
 
 // actions
-void action (t_philo *philo, time_t time, int digit, time_t action_time, time_t time_eat);
+void action (t_philo *philo, time_t time, int digit, time_t action_time);
 
 // time gestion
 void 	philo_action_time(t_philo *philo, time_t action_time, time_t eat_time, time_t time);

@@ -6,13 +6,13 @@
 /*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 15:25:17 by jmorneau          #+#    #+#             */
-/*   Updated: 2022/09/13 21:31:33 by jmorneau         ###   ########.fr       */
+/*   Updated: 2022/12/19 09:13:20 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-static void fork_init(t_global *data, int i)
+static void	fork_init(t_global *data, int i)
 {
 	if (data->philos[i].digit == data->count - 1)
 		data->philos[i].fork_right = &data->fork[0];
@@ -21,9 +21,9 @@ static void fork_init(t_global *data, int i)
 	data->philos[i].fork_left = &data->fork[i];
 }
 
-int data_init(t_global *data, char **argv)
+int	data_init(t_global *data, char **argv)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	data->alive = 1;
@@ -45,8 +45,7 @@ int data_init(t_global *data, char **argv)
 		fork_init(data, i);
 		data->philos[i].arg = argv;
 		data->philos[i].alive = &data->alive;
-		data->philos[i].superviseur = &data->superviseur;
-		i++;
+		data->philos[i++].superviseur = &data->superviseur;
 	}
 	return (0);
 }
